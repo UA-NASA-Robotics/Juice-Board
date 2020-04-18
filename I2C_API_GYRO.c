@@ -1,6 +1,5 @@
 #include <xc.h>
 #include <stdbool.h>
-//#include "Initialize.h"
 #include "comDefs.h"
 
 #define FOSC    (72000000ULL)

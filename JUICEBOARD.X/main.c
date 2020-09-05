@@ -50,12 +50,46 @@
 /*
                          Main application
  */
+
+#define LED_ZERO PORTBbits.RB1
+#define LED_ONE PORTBbits.RB0
+#define LED_TWO PORTAbits.RA1
+#define LED_THREE PORTAbits.RA0
+#define LED_FOUR PORTBbits.RB15
+#define LED_FIVE PORTBbits.RB14
+#define LED_SIX PORTAbits.RA7
+#define LED_SEVEN PORTAbits.RA10
+
 int main(void)
 {
+    
     // initialize the device
     SYSTEM_Initialize();
+    TRISAbits.TRISA0 = 0;
+    TRISAbits.TRISA1 = 0;
+    TRISAbits.TRISA7 = 0;
+    TRISAbits.TRISA10 = 0;
+    
+    TRISBbits.TRISB0 = 0;
+    TRISBbits.TRISB1 = 0;
+    TRISBbits.TRISB14 = 0;
+    TRISBbits.TRISB15 = 0;
+    
     while (1)
     {
+        LED_ZERO = 1;
+        LED_ONE = 1;
+        LED_TWO = 1;
+        LED_THREE = 1;
+        LED_FOUR = 1;
+        LED_FIVE = 1;
+        LED_SIX = 1;
+        LED_SEVEN = 1;
+        DELAY_milliseconds(100);
+        PORTA = 0x0000;
+        PORTB = 0x0000;
+        DELAY_milliseconds(100);
+        
         // Add your application code
     }
     return 1; 

@@ -18,7 +18,7 @@
     The generated drivers are tested against the following:
         Compiler          :  XC16 v1.50
         MPLAB 	          :  MPLAB X v5.40
-*/
+ */
 
 /*
     (c) 2020 Microchip Technology Inc. and its subsidiaries. You may use this
@@ -40,61 +40,38 @@
 
     MICROCHIP PROVIDES THIS SOFTWARE CONDITIONALLY UPON YOUR ACCEPTANCE OF THESE
     TERMS.
-*/
+ */
 
 /**
   Section: Included Files
-*/
+ */
 #include "mcc_generated_files/system.h"
+#include "LEDs.h"
 
 /*
                          Main application
  */
 
-#define LED_ZERO PORTBbits.RB1
-#define LED_ONE PORTBbits.RB0
-#define LED_TWO PORTAbits.RA1
-#define LED_THREE PORTAbits.RA0
-#define LED_FOUR PORTBbits.RB15
-#define LED_FIVE PORTBbits.RB14
-#define LED_SIX PORTAbits.RA7
-#define LED_SEVEN PORTAbits.RA10
 
-int main(void)
-{
-    
+int main(void) {
+
     // initialize the device
     SYSTEM_Initialize();
-    TRISAbits.TRISA0 = 0;
-    TRISAbits.TRISA1 = 0;
-    TRISAbits.TRISA7 = 0;
-    TRISAbits.TRISA10 = 0;
-    
-    TRISBbits.TRISB0 = 0;
-    TRISBbits.TRISB1 = 0;
-    TRISBbits.TRISB14 = 0;
-    TRISBbits.TRISB15 = 0;
-    
-    while (1)
-    {
-        LED_ZERO = 1;
-        LED_ONE = 1;
-        LED_TWO = 1;
-        LED_THREE = 1;
-        LED_FOUR = 1;
-        LED_FIVE = 1;
-        LED_SIX = 1;
-        LED_SEVEN = 1;
+
+
+    initializeLEDs();
+
+    while (1) {
+        LEDsAllOn();
         DELAY_milliseconds(100);
-        PORTA = 0x0000;
-        PORTB = 0x0000;
+        LEDsAllOff();
         DELAY_milliseconds(100);
-        
+
         // Add your application code
     }
-    return 1; 
+    return 1;
 }
 /**
  End of File
-*/
+ */
 

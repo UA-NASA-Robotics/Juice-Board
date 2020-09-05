@@ -3,14 +3,14 @@
 #include "mcc_generated_files/system.h"
 #include "LEDs.h"
 
-#define LED_ZERO PORTBbits.RB1
-#define LED_ONE PORTBbits.RB0
-#define LED_TWO PORTAbits.RA1
-#define LED_THREE PORTAbits.RA0
-#define LED_FOUR PORTBbits.RB15
-#define LED_FIVE PORTBbits.RB14
-#define LED_SIX PORTAbits.RA7
-#define LED_SEVEN PORTAbits.RA10
+#define LED_ZERO LATBbits.LATB1
+#define LED_ONE LATBbits.LATB0
+#define LED_TWO LATAbits.LATA1
+#define LED_THREE LATAbits.LATA0
+#define LED_FOUR LATBbits.LATB15
+#define LED_FIVE LATBbits.LATB14
+#define LED_SIX LATAbits.LATA7
+#define LED_SEVEN LATAbits.LATA10
 
 void LEDsAllOn(void)
 {

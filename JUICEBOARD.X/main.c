@@ -47,6 +47,7 @@
  */
 #include "mcc_generated_files/system.h"
 #include "LEDs.h"
+#include "buzzer.h"
 
 /*
                          Main application
@@ -58,14 +59,18 @@ int main(void) {
     // initialize the device
     SYSTEM_Initialize();
 
-
     initializeLEDs();
+    initializeBuzzer();
+    
+    buzzerOnDuration(500);
 
     while (1) {
         LEDsAllOn();
-        DELAY_milliseconds(100);
+        buzzerOn();
+        DELAY_milliseconds(500);
         LEDsAllOff();
-        DELAY_milliseconds(100);
+        buzzerOff();
+        DELAY_milliseconds(500);
 
         // Add your application code
     }

@@ -62,7 +62,7 @@
 #pragma config FWDTEN = OFF    //Watchdog Timer Enable bit->Watchdog timer enabled/disabled by user software
 
 // FOSC
-#pragma config POSCMD = NONE    //Primary Oscillator Mode Select bits->Primary Oscillator disabled
+#pragma config POSCMD = HS    //Primary Oscillator Mode Select bits->HS Crystal Oscillator Mode
 #pragma config OSCIOFNC = OFF    //OSC2 Pin Function bit->OSC2 is clock output
 #pragma config IOL1WAY = ON    //Peripheral pin select configuration->Allow only one reconfiguration
 #pragma config FCKSM = CSECMD    //Clock Switching Mode bits->Clock switching is enabled,Fail-safe Clock Monitor is disabled
@@ -80,17 +80,17 @@
 #include "clock.h"
 #include "system.h"
 #include "system_types.h"
+#include "delay.h"
+#include "tmr2.h"
 #include "interrupt_manager.h"
 #include "traps.h"
 #include "i2c1.h"
-#include "tmr2.h"
-#include "delay.h"
 
 void SYSTEM_Initialize(void)
 {
     PIN_MANAGER_Initialize();
-    INTERRUPT_Initialize();
     CLOCK_Initialize();
+    INTERRUPT_Initialize();
     I2C1_Initialize();
     TMR2_Initialize();
     INTERRUPT_GlobalEnable();

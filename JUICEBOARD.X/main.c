@@ -61,14 +61,11 @@ int main(void) {
 
     initializeLEDs();
     initializeBuzzer();
-    
-    buzzerOnDuration(500);
 
     while (1) {
         LEDsAllOn();
-        buzzerOn();
+        buzzerOnDuration(1000, 1000);
         DELAY_milliseconds(500);
-        printf("test");
         LEDsAllOff();
         buzzerOff();
         DELAY_milliseconds(500);

@@ -1,6 +1,7 @@
 #include "mcc_generated_files/system.h"
 #include "buzzer.h"
 #include "mcc_generated_files/delay.h"
+#include "mcc_generated_files/tmr2.h"
 
 #define buzzer LATBbits.LATB9
 
@@ -10,31 +11,28 @@ void initializeBuzzer(void)
     ANSELBbits.ANSB9 = 0; // Set pin RB9 to digital
 }
 
-void buzzerToggle(void)
-{
-    if (buzzer == 1)
-    {
-        buzzer = 0;
-    }
-    else
-    {
-        buzzer = 1;
-    }
-}
 
 void buzzerOff(void)
 {
     buzzer = 0;
 }
 
-void buzzerOn(void)
-{
-    buzzer = 1;
-}
 
-void buzzerOnDuration(int msDuration)
+void buzzerOnDuration(unsigned long duration, double frequency)
 {
-    buzzer = 1;
-    DELAY_milliseconds(msDuration);
-    buzzer = 0;
+    timer_t buzzerTimer;
+    setTimerInterval(&buzzerTimer, duration);
+    double period = 1 / (frequency);
+    period = period * 1000; //convert to ms
+    
+    timer_t periodTimer;
+    setTimerInterval(&periodTimer, period);
+    while (!timerDone(&buzzerTimer))
+    {
+        if (timerDone(&periodTimer))
+        {
+            //setTimerInterval(&periodTimer, period);
+            buzzer ^= 1;
+        }
+    }
 }

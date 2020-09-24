@@ -318,6 +318,17 @@ int TMR2_SoftwareCounterGet(void);
 
 void TMR2_SoftwareCounterClear(void);
 
+
+typedef struct
+{
+    unsigned long timerInterval;
+    unsigned long lastMS;
+}timer_t;
+
+bool timerDone(timer_t *t);
+void setTimerInterval(timer_t *t, unsigned long interval);
+void resetTimer(timer_t *t);
+
 #ifdef __cplusplus  // Provide C++ Compatibility
 
     }

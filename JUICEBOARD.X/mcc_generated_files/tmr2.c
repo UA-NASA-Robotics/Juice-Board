@@ -49,7 +49,7 @@
 
 #include <stdio.h>
 #include "tmr2.h"
-
+#include <stdlib.h>
 /**
  Section: File specific functions
 */
@@ -156,10 +156,52 @@ uint16_t TMR2_Counter16BitGet( void )
     return( TMR2 );
 }
 
+extern volatile unsigned int mSec = 0;
+extern volatile unsigned long mSecMaster = 0;
+extern volatile unsigned int sec = 0;
+extern volatile unsigned int min = 0;
 
 void __attribute__ ((weak)) TMR2_CallBack(void)
 {
     // Add your custom callback code here
+    mSec++;
+    mSecMaster++;
+    if (mSec > 999)
+    {
+        mSec = 0;
+        sec++;
+        if (sec > 59)
+        {
+            sec = 0;
+            min++;
+        }
+    }
+}
+
+bool timerDone(timer_t *t)
+{
+    if (abs(mSecMaster - t->lastMS) > t->timerInterval)
+    {
+        resetTimer(t);
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+void setTimerInterval(timer_t *t, unsigned long interval)
+{
+    if (t->timerInterval != interval)
+    {
+        t->timerInterval = interval;
+    }
+}
+
+void resetTimer(timer_t *t)
+{
+    t->lastMS = mSecMaster;
 }
 
 void  TMR2_SetInterruptHandler(void (* InterruptHandler)(void))

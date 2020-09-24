@@ -68,6 +68,7 @@ int main(void) {
         LEDsAllOn();
         buzzerOn();
         DELAY_milliseconds(500);
+        printf("test");
         LEDsAllOff();
         buzzerOff();
         DELAY_milliseconds(500);

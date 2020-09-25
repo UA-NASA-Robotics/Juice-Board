@@ -11,7 +11,7 @@
 
 void initializeBuzzer(void);
 void buzzerOff(void);
-void buzzerOnDuration(unsigned long, double);
+void buzzerOnDuration(unsigned long);
 
 #ifdef	__cplusplus
 extern "C" {

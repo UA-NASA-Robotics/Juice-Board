@@ -48,6 +48,7 @@
 #include "mcc_generated_files/system.h"
 #include "LEDs.h"
 #include "buzzer.h"
+#include "mcc_generated_files/tmr2.h"
 
 /*
                          Main application
@@ -61,15 +62,19 @@ int main(void) {
 
     initializeLEDs();
     initializeBuzzer();
-
+    LEDsAllOn();
+    timer_t LEDTimer;
+    setTimerInterval(&LEDTimer, 500);
+    buzzerOff();
     while (1) {
+        
         LEDsAllOn();
-        buzzerOnDuration(1000, 1000);
-        DELAY_milliseconds(500);
-        LEDsAllOff();
-        buzzerOff();
-        DELAY_milliseconds(500);
+        while (!timerDone(&LEDTimer));
+        buzzerOnDuration(500);
 
+        LEDsAllOff();
+
+        while (!timerDone(&LEDTimer));
         // Add your application code
     }
     return 1;

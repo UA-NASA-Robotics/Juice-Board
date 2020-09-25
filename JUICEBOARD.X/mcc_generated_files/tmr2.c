@@ -157,7 +157,7 @@ uint16_t TMR2_Counter16BitGet( void )
 }
 
 extern volatile unsigned int mSec = 0;
-extern volatile unsigned long mSecMaster = 0;
+extern volatile unsigned int mSecMaster = 0;
 extern volatile unsigned int sec = 0;
 extern volatile unsigned int min = 0;
 
@@ -176,11 +176,15 @@ void __attribute__ ((weak)) TMR2_CallBack(void)
             min++;
         }
     }
+    if (mSecMaster >= 65535)
+    {
+        mSecMaster = 0;
+    }
 }
 
 bool timerDone(timer_t *t)
 {
-    if (abs(mSecMaster - t->lastMS) > t->timerInterval)
+    if (abs(mSecMaster - t->lastMS) >= t->timerInterval)
     {
         resetTimer(t);
         return true;

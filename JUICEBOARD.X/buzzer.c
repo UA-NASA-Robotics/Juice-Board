@@ -18,21 +18,13 @@ void buzzerOff(void)
 }
 
 
-void buzzerOnDuration(unsigned long duration, double frequency)
+void buzzerOnDuration(unsigned long duration)
 {
-    timer_t buzzerTimer;
-    setTimerInterval(&buzzerTimer, duration);
-    double period = 1 / (frequency);
-    period = period * 1000; //convert to ms
-    
-    timer_t periodTimer;
-    setTimerInterval(&periodTimer, period);
-    while (!timerDone(&buzzerTimer))
+    int i;
+    for (i = 0; i < duration * 2; i = i + 1)
     {
-        if (timerDone(&periodTimer))
-        {
-            //setTimerInterval(&periodTimer, period);
-            buzzer ^= 1;
-        }
+        DELAY_microseconds(500);
+        buzzer ^= 1;
     }
+    buzzer = 0;
 }

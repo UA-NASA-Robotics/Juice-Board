@@ -80,11 +80,11 @@
 #include "clock.h"
 #include "system.h"
 #include "system_types.h"
-#include "delay.h"
-#include "tmr2.h"
+#include "i2c1.h"
 #include "interrupt_manager.h"
 #include "traps.h"
-#include "i2c1.h"
+#include "tmr2.h"
+#include "delay.h"
 
 void SYSTEM_Initialize(void)
 {

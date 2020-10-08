@@ -48,6 +48,8 @@
       <itemPath>buzzer.h</itemPath>
       <itemPath>buzzer.c</itemPath>
       <itemPath>main.c</itemPath>
+      <itemPath>app.c</itemPath>
+      <itemPath>app.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -275,6 +277,7 @@
         <property key="UART 3" value="true"/>
         <property key="UART 4" value="true"/>
         <property key="debugoptions.useswbreakpoints" value="false"/>
+        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>

@@ -3,14 +3,7 @@
 #include "mcc_generated_files/system.h"
 #include "LEDs.h"
 
-#define LED_ZERO LATBbits.LATB1
-#define LED_ONE LATBbits.LATB0
-#define LED_TWO LATAbits.LATA1
-#define LED_THREE LATAbits.LATA0
-#define LED_FOUR LATBbits.LATB15
-#define LED_FIVE LATBbits.LATB14
-#define LED_SIX LATAbits.LATA7
-#define LED_SEVEN LATAbits.LATA10
+
 
 void LEDsAllOn(void)
 {
@@ -34,6 +27,18 @@ void LEDsAllOff(void)
     LED_FIVE = 0;
     LED_SIX = 0;
     LED_SEVEN = 0;
+}
+
+void LEDsAllToggle(void)
+{
+    LED_ZERO ^= 1;
+    LED_ONE ^= 1;
+    LED_TWO ^= 1;
+    LED_THREE ^= 1;
+    LED_FOUR ^= 1;
+    LED_FIVE ^= 1;
+    LED_SIX ^= 1;
+    LED_SEVEN ^= 1;
 }
 
 

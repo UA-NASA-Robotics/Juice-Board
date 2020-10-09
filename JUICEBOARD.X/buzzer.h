@@ -10,7 +10,6 @@
 
 
 void initializeBuzzer(void);
-void buzzerOff(void);
 void buzzerOnDuration(unsigned long);
 
 #ifdef	__cplusplus

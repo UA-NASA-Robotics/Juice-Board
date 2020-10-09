@@ -46,36 +46,21 @@
   Section: Included Files
  */
 #include "mcc_generated_files/system.h"
-#include "LEDs.h"
-#include "buzzer.h"
+#include "app.h"
 #include "mcc_generated_files/tmr2.h"
-
+#include "LEDS.h"
 /*
                          Main application
  */
 
-
-int main(void) {
-
+int main(void)
+{
     // initialize the device
-    SYSTEM_Initialize();
-
-    initializeLEDs();
-    initializeBuzzer();
-    LEDsAllOn();
-    timer_t LEDTimer;
-    setTimerInterval(&LEDTimer, 500);
-    buzzerOff();
-    while (1) {
-        
-        LEDsAllOn();
-        while (!timerDone(&LEDTimer));
-        buzzerOnDuration(500);
-
-        LEDsAllOff();
-
-        while (!timerDone(&LEDTimer));
-        // Add your application code
+    STATE currentState;
+    currentState.state = STATE_INIT;
+    while (1)
+    {
+        app_task(&currentState);
     }
     return 1;
 }

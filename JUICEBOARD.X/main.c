@@ -53,6 +53,7 @@
                          Main application
  */
 
+// I2C address BQ7693006DBTR 0x18
 int main(void)
 {
     // initialize the device
